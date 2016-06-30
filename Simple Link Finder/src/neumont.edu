@@ -210,7 +210,8 @@ var _gaq = _gaq || [];
                     </nav>
                     <div id="searchBox">
                         <div id="loginItems">
-                            <a href="http://my.neumont.edu/" id="studentLogin">Student Login</a><a href="/industry.html" id="employers">For Employers</a>
+                            <a href="http://my.neumont.edu/" id="studentLogin">Student Login</a>
+                            <a href="/industry.html" id="employers">For Employers</a>
                         </div>
                         <form action="/search-results.html" method="get" id="searchForm">
                             <button type="submit" id="searchBtn">Search</button><input type="text" name="q" id="searchInput">
@@ -465,7 +466,11 @@ var _gaq = _gaq || [];
                 <div id="footerCall">
                     <span id="callNum">CALL: <a href="tel:18886386668">1-888-638-6668</a></span>
                     <div id="followUs">
-                        <span>Follow Us:</span><a href="http://www.twitter.com/neumontU" target="_blank" id="followTwitter">Twitter</a><a href="http://www.facebook.com/neumontuniversity" target="_blank" id="followFacebook">Facebook</a><a href="http://www.youtube.com/user/neumontuniversity#p/f" target="_blank" id="followYouTube">YouTube</a><a href="http://instagram.com/neumontu" target="_blank" id="followInstagram">Instagram</a><a href="http://blog.neumont.edu/" target="_blank" id="followBlog">Blog</a>
+                        <span>Follow Us:</span><a href="http://www.twitter.com/neumontU" target="_blank" id="followTwitter">Twitter</a>
+                        <a href="http://www.facebook.com/neumontuniversity" target="_blank" id="followFacebook">Facebook</a>
+                        <a href="http://www.youtube.com/user/neumontuniversity#p/f" target="_blank" id="followYouTube">YouTube</a>
+                        <a href="http://instagram.com/neumontu" target="_blank" id="followInstagram">Instagram</a>
+                        <a href="http://blog.neumont.edu/" target="_blank" id="followBlog">Blog</a>
                     </div>
                 </div>
                 <div id="footerLeft" class="footerEq">
@@ -518,13 +523,16 @@ var _gaq = _gaq || [];
                             QUICK LINKS
                         </h5>
                         <p>
-                            <a href="academiccalendar/index.html">Academic Calendar<br></a><a href="consumerdisclosures.html">Consumer Disclosures<br></a> <a href="/about-us/contact-us.html">Contact Us</a><br>
+                            <a href="academiccalendar/index.html">Academic Calendar<br></a>
+                            <a href="consumerdisclosures.html">Consumer Disclosures<br></a> <a href="/about-us/contact-us.html">Contact Us</a><br>
                             <a href="catalog.html">Course Catalog</a><br>
-                            <a href="about-us/documents.html">Important Documents<br></a><a href="neumontreviews.html">Neumont Reviews</a><br>
+                            <a href="about-us/documents.html">Important Documents<br></a>
+                            <a href="neumontreviews.html">Neumont Reviews</a><br>
                             <a href="newsevents.html">News &amp; Events</a><br>
                             <a href="privacypolicy.html">Privacy Policy</a><br>
                             <a href="scholarships/index.html">Scholarships</a><br>
-                            <a href="/site-map.html">Site Map<br></a><a href="top10/index.html">Top 10 Advantages</a><br>
+                            <a href="/site-map.html">Site Map<br></a>
+                            <a href="top10/index.html">Top 10 Advantages</a><br>
                             <a href="tuition/index.html">Tuition&nbsp;</a>
                         </p>
                     </div>

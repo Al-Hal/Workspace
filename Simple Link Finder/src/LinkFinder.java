@@ -1,20 +1,22 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
 
 public class LinkFinder {
 
 	private ArrayList<String> links = new ArrayList<String>();
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws IOException {
+
 		LinkFinder finder = new LinkFinder();
-		
-		
+
+		InputStream in = new FileInputStream("C:\\Users\\Baldielocks\\Downloads\\neumont.edu");
+		finder.processPage(in);
 		
 		while(finder.getLinks().hasNext()){
 			String link = finder.getLinks().next();
@@ -23,26 +25,20 @@ public class LinkFinder {
 
 	}
 
-	public void processPage(InputStream in) {
+	public void processPage(InputStream in) throws IOException {
 
-
-
-
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		while(reader.ready()){
+			String s = reader.readLine();
+			System.out.println(s);
+		}
+		String pattern = "<\\s*[Aa]\\s+[Hh][Rr][Ee][Ff]\\s*=\\s*\"[^\"]+\"\\s*\\w*=.*\".*[^\"]*\".*>";
 	}
 
 	public Iterator<String> getLinks() {
-
-
-//		String input = in.toString();
-		String pattern = "<\\s*[Aa]\\s+[Hh][Rr][Ee][Ff]\\s*=\\s*\"[^\"]+\"\\s*\\w*=.*\".*[^\"]*\".*>";
-		Pattern p = Pattern.compile(pattern);
-//		Matcher m = p.matcher(input);
-
-		Iterator<String> linkIt = links.iterator();
-//		while(linkIt.hasNext()){
-//			String link = linkIt.next();
-//		}
 		
+		Iterator<String> linkIt = links.iterator();
+
 		return linkIt;
 
 	}
