@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class LinkFinder {
 
-	private ArrayList<String> links = new ArrayList<String>();
+	public ArrayList<String> links = new ArrayList<String>();
 
 	public static void main(String[] args) throws IOException {
 
@@ -21,7 +21,7 @@ public class LinkFinder {
 		finder.processPage(in);
 
 		Iterator<String> linkIt = finder.getLinks();
-		
+
 		while(linkIt.hasNext()){
 			String link = linkIt.next();
 			System.out.println(link);
@@ -34,15 +34,16 @@ public class LinkFinder {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		while(reader.ready()){
 			String s = reader.readLine();
-			
+
 			String pattern = "<\\s*[Aa]\\s+[Hh][Rr][Ee][Ff]\\s*=\\s*\"([^\"]+)\"\\s*(\\w+\\s*=\\s*\"[^\"]+\"\\s*)*\\s*>";
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(s);
-			
+
 			if(m.find()){
 				links.add(m.group(1));
 			}
 		}
+		reader.close();
 
 	}
 
