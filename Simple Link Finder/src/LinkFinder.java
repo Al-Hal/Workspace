@@ -21,11 +21,11 @@ public class LinkFinder {
 		finder.processPage(in);
 
 		Iterator<String> linkIt = finder.getLinks();
-//		
-//		while(linkIt.hasNext()){
-//			String link = linkIt.next();
-//			System.out.println(link);
-//		}
+		
+		while(linkIt.hasNext()){
+			String link = linkIt.next();
+			System.out.println(link);
+		}
 
 	}
 
@@ -35,15 +35,12 @@ public class LinkFinder {
 		while(reader.ready()){
 			String s = reader.readLine();
 			
-			String pattern = "<\\s*[Aa]\\s+[Hh][Rr][Ee][Ff]\\s*=\\s*\"([^\"]+)\"\\s*(\\w+\\s*=\\s*\"[^\"]+\"\\s*)*\\s*>.*";
+			String pattern = "<\\s*[Aa]\\s+[Hh][Rr][Ee][Ff]\\s*=\\s*\"([^\"]+)\"\\s*(\\w+\\s*=\\s*\"[^\"]+\"\\s*)*\\s*>";
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(s);
-			boolean matches = m.matches();
-			if(matches){
-				System.out.println(m.group(1));
-			}
-			else{
-				System.out.println(s);
+			
+			if(m.find()){
+				links.add(m.group(1));
 			}
 		}
 
