@@ -30,7 +30,7 @@ public class LinkFinderTest {
 		Iterator<String> resultIt = results.iterator();
 		Iterator<String> linkIt = finder.getLinks();
 		while(resultIt.hasNext() && linkIt.hasNext()){
-			assertEquals(results, finder.links);
+			assertEquals(resultIt.next(), linkIt.next());
 		}
 			
 		
