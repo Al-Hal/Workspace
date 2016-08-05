@@ -3,11 +3,14 @@ import java.io.IOException;
 
 public class Main {
 
+	static String fileName = "shalladay";
+	
 	public static void main(String[] args) throws IOException {
-		PersistentArray.delete("PersistentArray.bin");
-		PersistentArray array = new PersistentArray("PersistentArray.bin");
-		PersistentArray.initialize("PersistentArray.bin", 10, 5);
-
+		WordIndex.delete(fileName);
+		WordIndex.initialize(fileName, 10);
+		Visit visit = new Visit();
+		Crawler crawler = new Crawler("http://shalladay-iis1.student.neumont.edu", 45, visit);
+		crawler.crawl();
 	}
 
 }

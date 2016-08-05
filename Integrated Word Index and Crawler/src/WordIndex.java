@@ -54,7 +54,7 @@ public class WordIndex {
 	}
 
 	public void add(String word, String url) throws IOException{
-		int index = word.hashCode()% (int)(hashIndex.getLength()/8);
+		int index = Math.abs(word.hashCode()% (int)(hashIndex.getLength()/8));
 		if(hashIndex.get(index) == initialValue){
 			UrlEntry urlEntry = new UrlEntry(url, 1);
 			Entry entry = new Entry(urlEntry.getUrl(), urlEntry.getCount(), initialValue);
@@ -69,7 +69,7 @@ public class WordIndex {
 			boolean hasChanged = false;
 			do{
 				if(hasChanged){
-					entry = new Entry(wordStore.getString(), wordStore.getValue(), wordStore.getValue());
+					entry = new Entry(wordStore.getString(), wordStore.getValue(), wordStore.getLink());
 				}
 				if(entry.getString().equals(word)){
 					Entry uEntry = urlLists.getEntry(entry.getValue());
@@ -77,7 +77,7 @@ public class WordIndex {
 					boolean urlChange = false;
 					long urlOffset = entry.getValue();
 					
-					System.out.println("Word links to url at: " + entry.getValue());
+//					System.out.println("Word links to url at: " + entry.getValue());
 					
 					do{
 						if(urlChange){
@@ -92,7 +92,7 @@ public class WordIndex {
 							urlChange = true;
 							urlOffset = uEntry.getLink();
 							
-							System.out.println(urlOffset);
+//							System.out.println(urlOffset);
 							
 						}else{
 							UrlEntry urlEntry = new UrlEntry(url, 1);
@@ -101,8 +101,8 @@ public class WordIndex {
 							uEntry.setLink(newOffset);
 							urlLists.putEntry(urlOffset, uEntry);
 							
-							System.out.println("Link changed at: " + urlOffset + " Link to " + newOffset);
-							System.out.println("New entry at: " + newOffset);
+//							System.out.println("Link changed at: " + urlOffset + " Link to " + newOffset);
+//							System.out.println("New entry at: " + newOffset);
 							
 							uEntry = urlLists.getEntry(newOffset);
 						}
@@ -128,7 +128,7 @@ public class WordIndex {
 
 	public Iterator<UrlEntry> getUrls(String word) throws IOException{
 		ArrayList<UrlEntry> urls = new ArrayList<UrlEntry>();
-		int index = (word.hashCode()% (int)(hashIndex.getLength()/8));
+		int index = Math.abs(word.hashCode()% (int)(hashIndex.getLength()/8));
 		long wordIndex = hashIndex.get(index);
 		Entry entry = wordLists.getEntry(wordIndex);
 		Entry wordStore = new Entry(null, 0, 0);

@@ -8,13 +8,11 @@ public class Visit  implements VisitAction{
 	WordIndex index;
 	String url;
 	String fileName = "shalladay";
-	
+
 	public Visit() throws IOException {
-		WordIndex.delete(fileName);
-		WordIndex.initialize(fileName, 10);
 		index = new WordIndex(fileName);
 	}
-	
+
 	@Override
 	public void visit(URL u) {
 		url = u.toString();
@@ -23,15 +21,15 @@ public class Visit  implements VisitAction{
 
 	@Override
 	public void getLine(String line){
-		String wordPattern = "\\w+";
-		Pattern p = Pattern.compile(wordPattern);
-		Matcher m = p.matcher(line);
-		
-		if(m.find()){
-			try {
-				index.add(m.group(), url);
-			} catch (IOException e) {
-				e.printStackTrace();
+		String wordPattern = "[^\\p{Alpha}]";
+		String[] words = line.split(wordPattern);
+		for(String s: words){
+			if(!s.equals("")){
+				try {
+					index.add(s.toLowerCase(), url);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Crawler{
 
-	public ArrayList<URL> visited = new ArrayList<URL>();
-	public ArrayList<URL> toVisit = new ArrayList<URL>();
+	private ArrayList<URL> visited = new ArrayList<URL>();
+	private ArrayList<URL> toVisit = new ArrayList<URL>();
 	String startingUrl;
 	int maxPageVisits;
 	Visit visit;
@@ -33,7 +33,7 @@ public class Crawler{
 
 	}
 
-	public void visitUrl(URL url) throws IOException{
+	private void visitUrl(URL url) throws IOException{
 
 		LinkFinder finder = new LinkFinder(visit);
 		InputStream in = url.openStream();
