@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.stream.Stream;
 
 public class ListFile {
 
@@ -33,9 +34,9 @@ public class ListFile {
 
 	public long newEntry(Entry entry) throws IOException{
 		long position = file.length();
-		
+
 		putEntry(position, entry);
-		
+
 		return position;
 	}
 
@@ -62,5 +63,5 @@ public class ListFile {
 		file.writeLong(entry.getValue());
 		file.writeLong(entry.getLink());
 	}
-	
+
 }

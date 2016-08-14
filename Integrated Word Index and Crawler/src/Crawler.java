@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class Crawler{
 
@@ -37,9 +38,11 @@ public class Crawler{
 
 		LinkFinder finder = new LinkFinder(visit);
 		InputStream in = url.openStream();
-		finder.processPage(in);
+		Stream<String> lines = finder.getLines(in);
+		lines.forEach((l) -> visit.getLine(l));
 		URL childUrl = null;
-		for(String s: finder.links){
+		for(Object o: finder.getLinks().toArray()){
+			String s = o.toString();
 			if(s.toLowerCase().startsWith("http:")){
 				childUrl = new URL(s);
 			}else if(!s.toLowerCase().startsWith("https:")){
