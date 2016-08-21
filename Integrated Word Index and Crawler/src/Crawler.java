@@ -5,13 +5,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-public class Crawler{
+public class Crawler implements Runnable{
 
 	private ArrayList<URL> visited = new ArrayList<URL>();
 	private ArrayList<URL> toVisit = new ArrayList<URL>();
 	String startingUrl;
 	int maxPageVisits;
 	Visit visit;
+	int pagesVisited = 0;
 
 	public Crawler(String startingUrl, int maxPageVisits, Visit visit) throws MalformedURLException{
 		this.startingUrl = startingUrl;
@@ -21,20 +22,11 @@ public class Crawler{
 		this.visit = visit;
 	}
 
-	public void crawl() throws IOException{
-		int pagesVisited = 0;
-		while(pagesVisited < maxPageVisits && !toVisit.isEmpty()){
-			URL website = toVisit.get(0);
-			visited.add(website);
-			toVisit.remove(website);
-			visit.visit(website);
-			visitUrl(website);
-			pagesVisited++;
-		}
-
+	public void crawl() throws IOException{	
+		new Thread(this).start();
 	}
 
-	private void visitUrl(URL url) throws IOException{
+	private void visitUrl(URL url) throws IOException, InterruptedException{
 
 		LinkFinder finder = new LinkFinder(visit);
 		InputStream in = url.openStream();
@@ -50,6 +42,23 @@ public class Crawler{
 			}
 			if(!visited.contains(childUrl) && !toVisit.contains(childUrl)){
 				toVisit.add(childUrl);
+				new Thread(this).join();
+			}
+		}
+	}
+
+	@Override
+	public void run() {
+		while(pagesVisited < maxPageVisits && !toVisit.isEmpty()){
+			pagesVisited++;
+			URL website = toVisit.get(0);
+			visited.add(website);
+			toVisit.remove(website);
+			visit.visit(website);
+			try {
+				visitUrl(website);
+			} catch (IOException | InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}

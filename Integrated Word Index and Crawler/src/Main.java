@@ -9,7 +9,7 @@ public class Main {
 		WordIndex.delete(fileName);
 		WordIndex.initialize(fileName, 10);
 		Visit visit = new Visit();
-		Crawler crawler = new Crawler("http://shalladay-iis1.student.neumont.edu", 45, visit);
+		Crawler crawler = new Crawler("http://shalladay-iis1.student.neumont.edu", 5, visit);
 		crawler.crawl();
 	}
 
